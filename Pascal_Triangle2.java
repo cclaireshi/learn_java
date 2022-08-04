@@ -12,9 +12,8 @@ public class Pascal_Triangle2 {
             bottom = bottom * i;
            
         }
-        int result = (top/bottom);
-        
-        return result; 
+        return (top/bottom);
+         
     }
 
     public static int[][] createTriangle (int triangleSize) {
@@ -22,8 +21,6 @@ public class Pascal_Triangle2 {
         for (int i=0; i < triangleSize; i++) {
             pascalTriangle[i] = new int[i+1];
         }
-
-    
 
         for (int i = 0; i < triangleSize; i++) {
             for (int j = 0; j < i+1; j++) {
@@ -33,13 +30,12 @@ public class Pascal_Triangle2 {
                 else {
                     pascalTriangle[i][j] = pascalTriangle[i-1][j-1] + pascalTriangle[i-1][j]; 
                 }
+                
             }
         }
-        
         return pascalTriangle; 
     }
     
-
     public static void main(String[] args) {
         int triangleSize = 10;
         int[][] Final_Pascal_Triangle = createTriangle(triangleSize);
@@ -50,16 +46,8 @@ public class Pascal_Triangle2 {
             
             for (int j: i) {
                 System.out.print(j + " ");
-                
             }
-            System.out.println(); 
-            
+            System.out.println();  
         }
-        
     }
-
-
-
-    
-    
 }
