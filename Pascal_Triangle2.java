@@ -1,4 +1,4 @@
-public class Pascal_Triangle2 {
+class PascalTriangle2 {
 
     public static int combination(int n, int k) {
         int top = 1;
@@ -27,21 +27,30 @@ public class Pascal_Triangle2 {
          */
         for (int i = 0; i < triangleSize; i++) {
             for (int j = 0; j < i+1; j++) {
+                // adding the previous rows
+                /* 
                 if (i == j || j == 0) {
                     pascalTriangle[i][j] = 1; 
                 }
                 else {
                     pascalTriangle[i][j] = pascalTriangle[i-1][j-1] + pascalTriangle[i-1][j]; 
                 }
+                */
+                // using combination method
+                pascalTriangle[i][j] = combination(i, j); 
 
             }
         }
         return pascalTriangle; 
     }
     
+    
+}
+
+public class Pascal_Triangle2 {
     public static void main(String[] args) {
         int triangleSize = 10;
-        int[][] Final_Pascal_Triangle = createTriangle(triangleSize);
+        int[][] Final_Pascal_Triangle = PascalTriangle2.createTriangle(triangleSize);
         for (int[] i: Final_Pascal_Triangle) {
             for (int k=0; k < triangleSize - i.length; k++) {
                 System.out.print(" "); 
@@ -54,3 +63,5 @@ public class Pascal_Triangle2 {
         }
     }
 }
+
+
