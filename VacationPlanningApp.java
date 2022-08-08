@@ -20,7 +20,7 @@ class Vacation {
     Flight[] flights; 
     String[] luggage; 
     CarRental[] rentalCars; 
-    Hotel[] hotels; 
+    Lodge[] lodges; 
     Campsite[] campsites; 
     DaySchedule[] days; 
     double finalBudget; 
@@ -29,16 +29,16 @@ class Vacation {
     }
     public double grandCost() {
         double finalCost = 0;
-        for (Hotel h: hotels) {
-            finalCost = finalCost + h.cost; 
+        for (Lodge h: this.lodges) {
+            finalCost = finalCost + h.CalculateTotalCost(); 
         }
-        for (Flight f: flights) {
+        for (Flight f: this.flights) {
             finalCost = finalCost + f.cost; 
         }
-        for (CarRental r: rentalCars) {
+        for (CarRental r: this.rentalCars) {
             finalCost = finalCost + r.totalcost(30); 
         }
-        for (DaySchedule s: days) {
+        for (DaySchedule s: this.days) {
             finalCost = finalCost + s.totalCost;
         }
         return finalCost; 
@@ -106,25 +106,29 @@ class CarRental {
 enum RoomType {
     ONEBED, TWOBEDS, ONELARGEBED, SUITE
 }
-
-class Hotel {
-    int numOfRooms;
-    Date checkInDate;
-    Date checkOutDate; 
-    double cost; 
+class Lodge {
+    double rate; 
     String address; 
-    boolean swimmingPool; 
+    Date checkinDate;
+    Date checkoutDate; 
+    int numOfDays; 
     CustomerReview review; 
+    public double CalculateTotalCost() {
+        return this.rate * this.numOfDays; 
+    }
+    
+}
+
+class Hotel extends Lodge{
+    int numOfRooms;
+    boolean swimmingPool; 
     boolean hasBreakfast; 
     RoomType roomType;
     String[] ammenities; 
 }
 
-class Campsite {
-    String address; 
+class Campsite extends Lodge{
     boolean rvOrTent; 
-    CustomerReview review; 
-    
 }
 
 class DaySchedule {
